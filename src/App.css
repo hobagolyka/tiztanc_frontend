@@ -28,3 +28,8 @@ body {
   #f2f2f2 8px,
   #f2f2f2 16px);
 }
+
+.MainContainer {
+  background-color: white;
+  min-height: 100vh;
+}
