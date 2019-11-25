@@ -4,21 +4,36 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { Link } from 'react-router-dom';
 import ReactFileReader from 'react-file-reader';
+import Formsy from 'formsy-react';
+import Input from '../components/Input';
 
 export default function MainPage(props){
 
     const oldProps = props;
     props = (props.match) ? props.match.params : props;
 
-    let [signed, setSigned] = useState(props.signed);
+    let [settings, setSettings] = useState({});
 
-    useEffect( () => setSigned(props.signed), [props.signed]);
+    let handleFiles = (files) => {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            // Use reader.result
+            alert(reader.result)
+        }
+        reader.readAsText(files[0]);
+    }
 
-    let canEdit = (scope) => scope === "SIGN" || scope === "WRITE";
+    let calculate = (values) => {
+        setSettings(values);
+        let testobj = {limit: 20, persons: 123, pass: 60, final: 6};
+
+        let rounds = 
+        console.log(values);
+    }
 
     return(
         <Container className="MainContainer">
-            <form>
+            <Formsy onSubmit={calculate}>
                 <Row>
                     <div className="col-11 mt-4">
                         <h5>Verseny esemény létrehozása</h5>
@@ -95,20 +110,22 @@ export default function MainPage(props){
                 <hr/>
                 <Row>
                     <div className="col-12">
-                        <div className="input-group flex-nowrap mt-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text" id="addon-wrapping7">Pontozó token</span>
-                            </div>
-                            <input type="text" className="form-control" aria-describedby="addon-wrapping7" name="token"/>
-                        </div>
+                        <Input name="token" type="text" />
                     </div>
                 </Row>
                 <Row>
                     <div className="col-12 mt-3">
-                    <Button variant="dark">Párok feltöltése CSV-ben</Button>
+                        <ReactFileReader handleFiles={handleFiles} fileTypes={'.csv'}>
+                            <Button variant="dark">Párok feltöltése CSV-ben</Button>
+                        </ReactFileReader>
                     </div>
                 </Row>
-            </form>
+                <Row>
+                    <div className="col-12 mt-3">
+                        <Button variant="warning" type="submit">Verseny menetrend számítása</Button>
+                    </div>
+                </Row>
+            </Formsy>
         </Container>
     );
 }

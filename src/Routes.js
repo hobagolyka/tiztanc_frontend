@@ -4,8 +4,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom"
 /**
  * Import all page components here
  */
-import App from './components/App';
-import MainPage from './components/MainPage';
+import App from './pages/App';
+import MainPage from './pages/MainPage';
 
 /**
  * All routes go here.

@@ -30,7 +30,8 @@ class App extends Component {
                 <div className={"col-4 offset-4"} align="center">
                     <Card className={"p-3"}>
                         <img src={"logo_icon.png"} width={"100%"}></img>
-                        <Link to="/newEvent"><Button variant={"dark"}>Create event</Button></Link>
+                        <Link to="/newEvent"><Button variant={"dark"}>Esemény létrehozása</Button></Link>
+                        <Link to="/newEvent" className="mt-2"><Button variant={"outline-dark"}>Események</Button></Link>
                     </Card>
                 </div>
             </Row>

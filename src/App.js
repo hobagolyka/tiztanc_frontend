@@ -3,8 +3,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom"
 
 import './App.css';
 
-import Login from './components/App';
-import Main from './components/MainPage';
+import Login from './pages/App';
+import Main from './pages/MainPage';
 
 class App extends Component {
 
