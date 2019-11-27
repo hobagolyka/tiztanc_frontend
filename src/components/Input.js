@@ -20,14 +20,14 @@ class Input extends React.Component {
         const errorMessage = this.props.getErrorMessage();
 
         return (
-        <div>
-            <div className="input-group flex-nowrap mt-3">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id={this.props.name}>Verseny fajtája</span>
+            <div>
+                <div className="input-group flex-nowrap mt-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id={this.props.name}>{this.props.title}</span>
+                    </div>
+                    <input className="form-control" placeholder={this.props.placeholder} onChange={this.changeValue} aria-describedby={this.props.name} type={this.props.type} name={this.props.name} value={this.props.getValue() || ''} />
+                    <span>{errorMessage}</span>
                 </div>
-                <input className="form-control" onChange={this.changeValue} aria-describedby={this.props.name} type={this.props.type} name={this.props.name} value={this.props.getValue() || ''} />
-                <span>{errorMessage}</span>
-            </div>
             </div>
         );
     }
