@@ -7,6 +7,7 @@ import Login from './pages/App';
 import Main from './pages/MainPage';
 import Vote from './pages/VotePage';
 import Event from './pages/Event';
+import EventsPage from './pages/EventsPage';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
                     <Route path='/newEvent' exact component={Main} />
                     <Route path='/votePage/:token' exact component={Vote} />
                     <Route path='/getEvent' exact component={Event} />
+                    <Route path='/getEvents' exact component={EventsPage} />
                 </Switch>
             </BrowserRouter>
         );

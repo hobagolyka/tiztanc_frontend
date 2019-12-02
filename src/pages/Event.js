@@ -48,7 +48,7 @@ export default function Event(props){
         if(token !== "")
             axios.get(`http://localhost:3001/get_active_heat/` + token)
                 .then(res => {
-                    setRoundIndex(res.data.roundIndex);
+                    setRoundIndex(res.data[0].roundIndex);
                 })
     }, [token]);
 
@@ -63,25 +63,28 @@ export default function Event(props){
         let firstIndex = 0;
         let temp = [];
         let arr = [];
+        let obj = {};
 
         heats.forEach( (i) => {
-
-            if(i.roundIndex === firstIndex)
-                temp.push(i);
-            else {
-                firstIndex = i.roundIndex;
-                arr.push(temp);
-                temp = [];
-            }
-
+            obj[i.roundIndex] = [];
         });
 
-        //arr.push(temp);
+        heats.forEach( (i) => {
+            obj[i.roundIndex].push(i);
+        });
+
+        var keys = Object.keys(obj);
 
         return <>{
-            arr.map((item) => (
+            keys.map((item) => (
                 <Row>
-                    <div className="col-4 mt-3">{item[0]? item[0].danceType : ""} ({item.length} fő)</div>
+                    {  obj[item][0] ? obj[item][0].roundIndex === roundIndex ?
+                        <div className="col-4 mt-3"><b>{obj[item][0] ? obj[item][0].danceType : ""} ({obj[item].length} fő) - aktív verseny</b></div>
+                        :
+                        <div className="col-4 mt-3">{obj[item][0] ? obj[item][0].danceType : ""} ({obj[item].length} fő)</div>
+                        :
+                        <div className="col-4 mt-3"></div>
+                    }
                     <div className="col-8 mt-3">
                         <Table>
                             <thead>
@@ -94,12 +97,12 @@ export default function Event(props){
                             </thead>
                             <tbody>
                             {
-                                item.map((item) => (
+                                obj[item].map((i) => (
                                     <tr>
-                                        <td>{item.idPair}</td>
-                                        <td>{item.name1}</td>
-                                        <td>{item.name2}</td>
-                                        <td>{item.school}</td>
+                                        <td>{i.idPair}</td>
+                                        <td>{i.name1}</td>
+                                        <td>{i.name2}</td>
+                                        <td>{i.school}</td>
                                     </tr>
                                 ))
                             }
@@ -111,16 +114,18 @@ export default function Event(props){
         }</>
     }
 
-
     return(
         <Container className="MainContainer">
             <Row>
-                <div className="col-12 mt-3" align="center">
-                    <h2>Aktív esemény {roundIndex}</h2>
+                <div className="col-11 mt-4">
+                    <h1>Aktív esemény</h1>
+                </div>
+                <div className="col-1 mt-4">
+                    <Link to="/"><Button variant="dark">Vissza</Button></Link>
                 </div>
             </Row>
             <Row>
-                <div className="col-12 mt-3" align="center">
+                <div className="col-12 mt-3" >
                     <h5>{event.name}</h5>
                     <h6>{event.date}</h6>
                 </div>

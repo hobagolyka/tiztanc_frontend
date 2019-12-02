@@ -211,7 +211,7 @@ return(
         <Formsy onSubmit={onSubmit}>
             <Row>
                 <div className="col-11 mt-4">
-                    <h5>Verseny esemény létrehozása</h5>
+                    <h1>Verseny esemény létrehozása</h1>
                 </div>
                 <div className="col-1 mt-4">
                     <Link to="/"><Button variant="dark">Vissza</Button></Link>
