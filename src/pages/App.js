@@ -32,7 +32,8 @@ class App extends Component {
                         <img src={"logo_icon.png"} width={"100%"}></img>
                         <Link to="/newEvent"><Button variant={"dark"}>Esemény létrehozása</Button></Link>
                         <Link to="/newEvent" className="mt-2"><Button variant={"outline-dark"}>Események</Button></Link>
-                        <Link to="#" className="mt-2"><Button variant={"outline-dark"}>Aktív verseny</Button></Link>
+                        <Link to="/votePage" className="mt-2"><Button variant={"outline-dark"}>Aktív verseny pontozása</Button></Link>
+                        <Link to="/getEvent" className="mt-2"><Button variant={"outline-dark"}>Aktív esemény</Button></Link>
                     </Card>
                 </div>
             </Row>
